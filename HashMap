@@ -84,7 +84,7 @@ public V remove(K key)
   //key is head
   if(head.key.equals(key))
   {
-    V = head.value;
+    V value = head.value;
     bucket.set(index, head.next);
     size --;
     return V;
