@@ -72,4 +72,39 @@ public void add(K key, V value)
   }
   //can optimize the hashtable by checking load factor = size/numBucket > 0.7
 }
+
+public V remove(K key)
+{
+  int index = getIndex(key);
+  HashNode<K,V> head = bucket.get(index);
+  //head is null
+  if (head == null)
+  return -1;
+  
+  //key is head
+  if(head.key.equals(key))
+  {
+    V = head.value;
+    bucket.set(index, head.next);
+    size --;
+    return V;
+  }
+  
+  //key in chain
+  HashNode<K,V> prev;
+  while(head != null)
+  {
+    if(head.key.equals(key))
+    {
+      V value = head.value;
+      prev.next = head.next;
+      size--;
+      return value;
+    }
+    prev = head;
+    head = head.next;
+  }
+  //key not present
+  return -1;
+}
 }
