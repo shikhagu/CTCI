@@ -39,42 +39,37 @@ public void add(K key, V value)
 {
   int index = getIndex(key);
   HashNode head = bucket.get(index);
+  HashNode<K,V> addNode = new HashNode<K,V>();
+  addNode.key = key;
+  addNode.value = value;
+  
+  //Head is null
   if(head == null)
   {
-    HashNode<K,V> addNode = new HashNode<K,V>();
-    addNode.key = key;
-    addNode.value = value;
     bucket.set(index, addNode);
     size++;
   }
   else {
-    //Key is head
-    if(head.key.equals(key)) //check
-    {
-      head.value = value;
-      return; //check
-    }
-    
     //Key is in chain
-    HashNode<K,V> prev;
     while(head != null)
     {
       if(head.key.equals(key))
       {
         head.value = value;
-        return;
+        break;
       }
-      prev = head;
       head = head.next;
     }
     
     // Key is not present
-    HeadNode<K,V> addNode = new HeadNode<K,V>();
-    addNode.key = key;
-    addNode.value = value;
-    addNode.next = head;
-    bucket.set(index, addNode);
-    size++;
+    if(head == null)
+    {
+      head = bucket.get(index);
+      addNode.next = head;
+      bucket.set(index, addNode);
+      size++;
+    }
   }
+  //can optimize the hashtable by checking load factor = size/numBucket > 0.7
 }
 }
