@@ -1,0 +1,80 @@
+public class HashMap<K,V> {
+
+private ArrayList<HashNode<K,V>> bucket;
+int numBucket = 10;
+int size;
+
+public HashMap() {
+  for (int i=0; i<numBucket; i++)
+  {
+    bucket[i] = null;
+  }
+}
+
+public int getSize{
+  return size;
+}
+
+public V get(K key)
+{
+  int index = getIndex(key);
+  HashNode head = bucket.get(index);
+  while(head!=null)
+  {
+    if(head.key.equals(key))
+    {
+      return head.value;
+    }
+    head = head.next;
+  }
+  return -1;
+}
+
+private int getIndex(K key)
+{
+  int hash = key.hashCode();
+  return hash%numBucket;
+}
+public void add(K key, V value)
+{
+  int index = getIndex(key);
+  HashNode head = bucket.get(index);
+  if(head == null)
+  {
+    HashNode<K,V> addNode = new HashNode<K,V>();
+    addNode.key = key;
+    addNode.value = value;
+    bucket.set(index, addNode);
+    size++;
+  }
+  else {
+    //Key is head
+    if(head.key.equals(key)) //check
+    {
+      head.value = value;
+      return; //check
+    }
+    
+    //Key is in chain
+    HashNode<K,V> prev;
+    while(head != null)
+    {
+      if(head.key.equals(key))
+      {
+        head.value = value;
+        return;
+      }
+      prev = head;
+      head = head.next;
+    }
+    
+    // Key is not present
+    HeadNode<K,V> addNode = new HeadNode<K,V>();
+    addNode.key = key;
+    addNode.value = value;
+    addNode.next = head;
+    bucket.set(index, addNode);
+    size++;
+  }
+}
+}
