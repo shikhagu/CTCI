@@ -2,7 +2,7 @@ public class ArrayList<T> {
 
   private T[] base;
   int size = 10;
-  int length; //number of elements
+  int count;
   
   public ArrayList() {
   // check that T is not primitive type
@@ -15,24 +15,24 @@ public class ArrayList<T> {
   }
   
   public void add(T item) {
-    if(length == size)
+    if(count == size)
     {
       T[] temp = base;
       size = size * 2;
       T[] base = new T[size];
       
-      for(int i=0; i<length; i++)
+      for(int i=0; i<count; i++)
         base[i] = temp[i];
-      for(int i=length; i<size; i++)
+      for(int i=count; i<size; i++)
         base[i] = null;
     }
-    base[length] = item;
-    length++;
+    base[count] = item;
+    count++;
   }
   
   public T get(int index)
   {
-    if(index>length)
+    if(index>=count)
       throw new ArrayOutOfBoundException("Index greater than length of the ArrayList");
     
     return base[index];
@@ -40,18 +40,18 @@ public class ArrayList<T> {
   
   public T remove(int index)
   {
-    if(index>length)
+    if(index>count)
       throw new ArrayOutOfBoundException("Index greater than length of the ArrayList");
     
-    for(i=index; i<length; i++)
+    for(i=index; i<count; i++)
     {
       base[i] = base[i+1];
     }
-    length--;
+    count--;
   }
   
   public int getLength()
   {
-    return length;
+    return count;
   }
 }
