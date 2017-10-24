@@ -1,0 +1,20 @@
+public class StringBuilder{
+
+char[] base;
+int size = 100;
+
+public StringBuilder() {
+  base = new char[size];
+}
+
+public void append(String input)
+{
+  
+}
+
+public String toString()
+{
+  
+}
+
+}
