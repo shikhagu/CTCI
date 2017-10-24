@@ -40,7 +40,7 @@ public class ArrayList<T> {
   
   public T remove(int index)
   {
-    if(index>count)
+    if(index>=count)
       throw new ArrayOutOfBoundException("Index greater than length of the ArrayList");
     
     for(i=index; i<count; i++)
