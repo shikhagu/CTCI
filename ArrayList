@@ -1,0 +1,57 @@
+public class ArrayList<T> {
+
+  private T[] base;
+  int size = 10;
+  int length; //number of elements
+  
+  public ArrayList() {
+  // check that T is not primitive type
+  
+    base = new T[size];
+    for(int i=0; i<size; i++)
+    {
+      base[i] = null;
+    }
+  }
+  
+  public void add(T item) {
+    if(length == size)
+    {
+      T[] temp = base;
+      size = size * 2;
+      T[] base = new T[size];
+      
+      for(int i=0; i<length; i++)
+        base[i] = temp[i];
+      for(int i=length; i<size; i++)
+        base[i] = null;
+    }
+    base[length] = item;
+    length++;
+  }
+  
+  public T get(int index)
+  {
+    if(index>length)
+      throw new ArrayOutOfBoundException("Index greater than length of the ArrayList");
+    
+    return base[index];
+  }
+  
+  public T remove(int index)
+  {
+    if(index>length)
+      throw new ArrayOutOfBoundException("Index greater than length of the ArrayList");
+    
+    for(i=index; i<length; i++)
+    {
+      base[i] = base[i+1];
+    }
+    length--;
+  }
+  
+  public int getLength()
+  {
+    return length;
+  }
+}
