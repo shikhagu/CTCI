@@ -1,11 +1,11 @@
 // O(min(n, c))  c - num of characters
 
 
-public bool hasUniqueChars(String str){
+public boolean hasUniqueChars(String str){
   HashSet<String> set = new HashSet<String>();
   for(int i=0; i<str.length(); i++)
   {
-    Char char = str.charAt(i);
+    char char = str.charAt(i);
     if(set.contains(char))
     {
       return false;
@@ -21,11 +21,12 @@ public bool hasUniqueChars(String str){
 Apple
 elppA
 
-public bool hasUniqueChars(String str){
-  String sortedStr = mergeSort(str);
-  for(int i=0; i<str.length()-1; i++)
+public boolean hasUniqueChars(String str){
+  char[] strArray = str.toCharArray();
+  Arrays.sort(strArray);
+  for(int i=0; i<strArray.length-1; i++)
   {
-    if(sortedStr.charAt(i) == sortedStr.charAt(i))
+    if(strArray[i] == strArray[i+1])
       return false;
   }
   return true;
