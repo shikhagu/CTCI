@@ -1,4 +1,4 @@
-// O(n)
+// O(min(n, c))  c - num of characters
 
 
 public bool hasUniqueChars(String str){
