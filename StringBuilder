@@ -9,12 +9,22 @@ public StringBuilder() {
 
 public void append(String input)
 {
+  if ((base.length() + input.length()) > size)
+  {
+    char[] temp = base;
+    size = size * 2;
+    char[] base = new char[size];
+    for(int i=0; i<temp.length; i++)
+      base[i] = temp[i];
+  }
   
+  for(int i=0; i<input.length(); i++)
+    base[i+temp.length()] = input.charAt(i);
 }
 
 public String toString()
 {
-  
+  return new String(base, 0 , base.length());
 }
 
 }
