@@ -11,7 +11,7 @@ public bool arePermutation(String s1, String s2)
   if(s1.length() == s2.length())
   {
     // Creating hashtable with all the characters of s1
-    HashTable<String,Integer> hashtable = new HashTable<String,Integer>();
+    HashTable<Char,Integer> hashtable = new HashTable<Char,Integer>();
     for(int i=0; i<s1.length(); i++) {
       Char currentChar = s1.charAt(i);
       if(hashtable.contains(currentChar)) {
