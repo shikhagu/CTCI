@@ -39,3 +39,19 @@ public boolean arePermutation(String s1, String s2)
   else
     return false;
 }
+
+---------------------
+O(nlogn)
+
+private String sort(String input)
+{
+  char[] inputArray = input.toCharArray();
+  Arrays.sort(inputArray);
+  return new String(inputArray);
+}
+public boolean arePermutations(String s1, String s2){
+    if(s1.length() != s2.length())
+      return false;
+    
+    return sort(s1).equals(sort(s2));
+}
