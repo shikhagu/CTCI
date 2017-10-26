@@ -2,15 +2,15 @@
 
 
 public boolean hasUniqueChars(String str){
-  HashSet<String> set = new HashSet<String>();
+  HashSet<Character> set = new HashSet<Character>();
   for(int i=0; i<str.length(); i++)
   {
-    char char = str.charAt(i);
-    if(set.contains(char))
+    char c = str.charAt(i);
+    if(set.contains(c))
     {
       return false;
     }
-    set.add(char);
+    set.add(c);
   }
   return true;
 }
