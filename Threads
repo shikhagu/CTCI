@@ -1,6 +1,6 @@
 import java.util.concurrent.*;
 
-public class TestThreads{
+public class TestClass{
 
     public static void print(String str){
             String threadName = Thread.currentThread().getName();
@@ -24,7 +24,7 @@ public class TestThreads{
         }
     }
     
-    public static void main(String[] args)
+    public static void main(String[] args) throws InterruptedException
     {
         print("I am the main thread!");
         int patience = 2000; // 2 sec
@@ -49,3 +49,12 @@ public class TestThreads{
         print("finally");
     }
 }
+
+main: I am the main thread!
+main: waiting
+Thread-0: Data1
+main: waiting
+Thread-0: Data2
+main: tired of waiting!
+Thread-0: Not done yet!
+main: finally
