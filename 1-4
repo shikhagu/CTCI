@@ -6,7 +6,7 @@ i 2
 s 3
   1
   
-public boolean isPalindrome(String input)
+public static boolean isPalindrome(String input)
 {
   Hashtable<Character,Integer> hashtable = new Hashtable<Character,Integer>();
   String inputLower = input.toLowerCase();
@@ -18,17 +18,21 @@ public boolean isPalindrome(String input)
      else
       hashtable.put(c, 1);
   }
-  
-  Iterator<Character> itr = hashtable.getKeyIterator();
+
+  Set<Map.Entry<Character,Integer>> entries = hashtable.entrySet();
   int oddOccurrence = 0;
-  for(Character c: itr.next())
+  for(Map.Entry<Character,Integer> entry: entries)
   {
-    if(hashtable.get(c)%2 != 0 && !c.isWhitespace())
+    if(((entry.getValue() % 2) != 0) && !Character.isWhitespace(entry.getKey()))
     {
       oddOccurrence++;
-      if(oddOccurence>1)
+      if(oddOccurrence>1)
         return false;
     }
   }
   return true;
+}
+public static void main (String[] args) throws java.lang.Exception
+{
+  System.out.println(isPalindrome("Misi miiss"));
 }
