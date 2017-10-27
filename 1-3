@@ -10,20 +10,20 @@ outputArray -> Test%20123%2045
 
 O(n)
 
-public char[] urlify(char[] input, int length)
+public static char[] urlify(char[] input, int length)
 {
-  int numSpaces;
+  int numSpaces=0;
   for(int i=0; i<length; i++){
-    if(input[i].equals(' '))
+    if(input[i] == ' ')
       numSpaces++;
   }
-  
+
   int newLength = length + numSpaces*2;
-  int i = newLength-1;
+  int i = newLength;
   int j = length-1;
   while(j>=0)
   {
-    if(input[j].equals(' '))
+    if(input[j] == ' ')
     {
       input[--i] = '0';
       input[--i] = '2';
@@ -36,3 +36,21 @@ public char[] urlify(char[] input, int length)
   }
   return input;
 }
+
+	public static void main (String[] args)
+	{
+		char[] str = new char[15];
+		str[0] = 'T';
+		str[1] = 'e';
+		str[2] = 's';
+		str[3] = 't';
+		str[4] = ' ';
+		str[5] = '1';
+		str[6] = '2';
+		str[7] = '3';
+		str[8] = ' ';
+		str[9] = '4';
+		str[10] = '5';
+		System.out.println(new String(urlify(str,11)));
+		
+	}
