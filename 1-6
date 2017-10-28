@@ -1,0 +1,16 @@
+public static String compress(String original)
+{
+  StringBuilder sb = new StringBuilder();
+  int countOccurrence = 0;
+  for(int i=0;i<original.length();i++)
+  {
+  	  ++countOccurrence;
+      if((i+1 >= original.length()) || (original.charAt(i) != original.charAt(i+1)))
+      {
+         sb.append(original.charAt(i));
+         sb.append(countOccurrence);
+      	countOccurrence=0;
+      }
+  }
+  return sb.length() == original.length() ? original : sb.toString();
+}
