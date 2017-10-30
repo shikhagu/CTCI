@@ -1,0 +1,24 @@
+//Decimal Binary conversion
+
+0.25
+public String convertDecToBinary(double num)
+{
+  StringBuilder sb = new StringBuilder();
+  if(num > 1 || num < 0)
+    return "ERROR";
+  
+  sb.append(".");
+  while(num > 0){
+    if(sb.length()>=32)
+      return "ERROR";
+    
+    if(num*2 >= 1)
+    {
+      sb.append("1");
+      num = num - 1;
+    }
+    else
+      sb.append("0");
+  }
+  return sb.toString();
+}
