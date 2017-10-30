@@ -1,0 +1,43 @@
+// Get bit
+
+public int getBit(int num, int i){
+  int mask = 1 << i;
+  return ((num & mask) >> i) != 0;
+}
+
+
+// Set bit
+public int setBit(int num, int i){
+  int mask = 1 << i;
+  return num | mask;
+}
+
+// Clear bit
+public int clearBit(int num, int i){
+  int mask = ~(1 << i);
+  return num & mask;
+}
+
+public int clearMSBToI(int num, int i){
+  int mask = (1 << i) - 1;
+  return num & mask;
+}
+
+public int clearITo0(int num, int i){
+  int mask = -1 << i+1;
+  return num & mask;
+}
+
+// Update bit
+public int updateBit(int num, int i, boolean value)
+{
+  int setBit = value ? 1 : 0;
+  
+  //Clear
+  int clearMask = ~(1 << i);
+  int clearNum = num & clearMask;
+  
+  //Set 
+  int setMask = setBit << i;
+  return num | setMask;
+}
