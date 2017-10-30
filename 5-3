@@ -1,0 +1,27 @@
+public static int findLongestLengthAfterFlip(int num)
+{
+  ArrayList<Integer> list = new ArrayList<Integer>();
+  
+  //Adding starting position
+  list.add(-1);
+  
+  // Check position of zeros in num
+  for(int i=0; i<32;i++)
+  {
+    boolean bit = (num & (1 << i)) != 0;
+    if(!bit)
+      list.add(i);
+  }
+  
+  list.add(33);
+  
+  // Checking longest sequence
+  int maxLengthOf1s = 0;
+  for(int i=0; (i+2) <list.size(); i++)
+  {
+    int currentLength = list.get(i+2) - list.get(i) -1;
+    if(currentLength > maxLengthOf1s)
+    {
+      maxLengthOf1s = currentLength;
+    }
+  }
