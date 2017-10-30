@@ -25,3 +25,9 @@ public static int findLongestLengthAfterFlip(int num)
       maxLengthOf1s = currentLength;
     }
   }
+  return maxLengthOf1s;
+}
+public static void main (String[] args) throws java.lang.Exception
+{
+  System.out.println(findLongestLengthAfterFlip(2001));
+}
