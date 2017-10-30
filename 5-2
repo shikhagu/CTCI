@@ -12,7 +12,8 @@ public String convertDecToBinary(double num)
     if(sb.length()>=32)
       return "ERROR";
     
-    if(num*2 >= 1)
+    num = num * 2;
+    if(num >= 1)
     {
       sb.append("1");
       num = num - 1;
