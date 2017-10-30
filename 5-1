@@ -1,0 +1,17 @@
+Input: N 10000000000, M 10011, i 2, j 6
+
+mask = 11110000011
+temp = 10000000000
+setmask = 1001100
+Output: N = 10001001100
+
+public int insertMtoN(int N, int M, int j, int i)
+{
+  // Clear
+  int mask = (-1 << j+1) | ((1 << i) -1);
+  int temp = N & mask;
+  
+  // Set
+  int setMask = M << i;
+  return N | M;
+}
