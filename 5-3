@@ -13,7 +13,7 @@ public static int findLongestLengthAfterFlip(int num)
       list.add(i);
   }
   
-  list.add(33);
+  list.add(32);
   
   // Checking longest sequence
   int maxLengthOf1s = 0;
