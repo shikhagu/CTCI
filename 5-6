@@ -1,0 +1,7 @@
+public int flipNumToConvert(int A, int B){
+  for(int C = A ^ B; C != 0; C = C >> 1)
+  {
+    count += C & 1
+  }
+  return count;
+}
