@@ -1,35 +1,51 @@
 // Data Model
-public enum Value{
-  ACE, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING;
-}
-public enum Color{
-  RED, BLACK;
-}
-public enum Shape{
+public enum Suit{
   CLUB, HEART, SPADE, DIAMOND;
+  // methods to set get suit on value, or value on suit
 }
-public class Card {         // immutable
-private Shape shape;
-private Value value;
-private Color color;
-private int gameValue;      // For game purposes
-  public Card(Shape shape, Value value, Color color){ //default constructor
+public abstract class Card {         // immutable
+  private Suit suit;
+  private int value;
+  private boolean isAvailable;
+  public Card(Suit suit, int value){ //default constructor
     this.shape = shape;
     this.value = value;
-    this.color = color;
   }
   private Card(){ // eliminating
   }
-  public void setGameValue();
-  public int getGameValue();
+  // available related methods
 }
 -------------------------------
-public class CardDeck{
-  private Card[] cards;
-  public CardDeck{
-    // set 52 cards
+public class Deck<T extends Card>{
+  private ArrayList<T> cards;
+  public CardDeck(ArrayList<T> cards){
+    // set cards
   }
+  public void shuffleCards();
+  public T[] dealCards();
+  public T dealCard(); // get the top card on the table
 }
+
+public class Hand<T extends Card>{
+  private ArrayList<T> cards;
+  public Hand(ArrayList<T> cards){
+    // set cards
+  }
+  public void addCards();
+}
+
+-----------------------------
+public class BlackJackCard extends Card{
+//value
+}
+public class Deck<BlackJackCard>{
+// deck config
+}
+public class Hand<BlackJackCard>{
+// score
+}
+
+-------------------------------
 -------------------------------
 public class CardGame{
   private ArrayList<CardDeck> cardDecks;
@@ -37,11 +53,9 @@ public class CardGame{
   private ArrayList<Player> players;
   private Player winner;
   private Player dealer;
-  public void shuffleCards();
-  public void dealCards();
   public void removePlayer(Player player);
   public void addPlayer(Player player); 
-  public Card getCard(); // get the top card on the table
+  
 }
 -------------------------------
 public class Player{
