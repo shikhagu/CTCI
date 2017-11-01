@@ -1,0 +1,70 @@
+// Data Model
+public enum Value{
+  ACE, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING;
+}
+public enum Color{
+  RED, BLACK;
+}
+public enum Shape{
+  CLUB, HEART, SPADE, DIAMOND;
+}
+public class Card {         // immutable
+private Shape shape;
+private Value value;
+private Color color;
+private int gameValue;      // For game purposes
+  public Card(Shape shape, Value value, Color color){ //default constructor
+    this.shape = shape;
+    this.value = value;
+    this.color = color;
+  }
+  private Card(){ // eliminating
+  }
+  public void setGameValue();
+  public int getGameValue();
+}
+-------------------------------
+public class CardDeck{
+  private Card[] cards;
+  public CardDeck{
+    // set 52 cards
+  }
+}
+-------------------------------
+public class CardGame{
+  private ArrayList<CardDeck> cardDecks;
+  private ArrayList<Card> cardsOnTable;
+  private ArrayList<Player> players;
+  private Player winner;
+  private Player dealer;
+  public void shuffleCards();
+  public void dealCards();
+  public void removePlayer(Player player);
+  public void addPlayer(Player player); 
+  public Card getCard(); // get the top card on the table
+}
+-------------------------------
+public class Player{
+  private ArrayList<Card> cards;
+  public void addCard(Card card)
+  public void removeCard(Card card);
+}
+-------------------------------
+public class BlackJack extends CardGame{
+  public BlackJack()
+  {
+    // Set card decks
+    // Set game value for all cards
+    // Set players
+    // set dealer
+  }
+  public void dealCards();  // updates cards on table
+  public void checkWinner(Player player);
+  public void getScore(Player player)
+  public void endGame()
+  {// check winner
+  // check scores of all player
+  // stores in persistent storage if required
+  // cleans up
+  }
+}
