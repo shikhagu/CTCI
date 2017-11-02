@@ -1,0 +1,33 @@
+public abstract class Jukebox{
+  private double partialDeposit;
+  private double oneTimeCost;
+  private double totalMoney;
+  public void newRequest(double money, String request);
+}
+public class MusicalJukebox extends JukeBox{
+  private double oneTimeCost = 1.5; //$s
+  private double totalMoney;
+  private String newRequest(double money, String request);
+  {
+    if((partialDeposit + money) == oneTimeCost)
+    {
+      totalMoney = partialDeposit + money;
+      partialAmount = 0.0;
+      playRequest(request);
+    }
+    else if((partialDeposit + money) > oneTimeCost)
+    {
+      totalMoney = oneTimeCost;
+      returnMoney(partialDeposit + money - oneTimeCost);
+      partialDeposit = 0.0;
+      playRequest(request);
+    }
+    else
+    {
+      partialDeposit = money;
+      return "Pay "+ (oneTimeCost - money) + " more!";
+    }
+  }
+  public String playRequest(String request);
+  public String returnMoney(double change);
+}
