@@ -1,0 +1,51 @@
+public abstract class Employee{
+  private CallCenter callcenter;
+  private boolean available;
+  private Rank rank;
+  private Call currentCall;
+  public void handleCall(Call c);
+  public void escalate(Call c);
+}
+public class Respondent extends Employee{
+  public Rank rank;
+  public Respondent(){
+    this.rank = Rank.Respondent;
+  }
+  public void escalate(Call c){
+    c.minRank = Rank.Manager;
+    for(Manager m : callCenter.managers)
+    {
+      if(m.isAvailable()) {
+        m.handleCall(c);
+      }
+      else {
+        c.sendMessage("Please wait for next available representative!");
+        callCenter.queue.add(c);
+      }
+    }
+  }
+}
+public class Manager extends Employee{
+}
+public class Director extends Employee{
+}
+---------------------------------------------------------
+public class Call{
+  private Rank minRank;
+  private Caller caller;
+  private Employee handler;
+  public void sendMessage(String m);
+}
+------------------------------------
+public class CallCenter{
+  private ArrayList<Respondent> respondents;
+  private ArrayList<Manager> managers;
+  private ArrayList<Director> directors;
+  private ArrayList<Call> callQueue;
+  public Employee dispatchCall(Call c){
+    for(Respondent r: respondents)
+      { if(r.isAvailable())
+          r.handleCall();
+      }
+  } 
+}
