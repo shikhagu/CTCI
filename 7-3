@@ -3,8 +3,12 @@ public abstract class Jukebox{
   private double oneTimeCost;
   private double totalMoney;
   public void newRequest(double money, String request);
+  public String playRequest(String request);
+  public String returnMoney(double change);
+  public void reset();
 }
 public class MusicalJukebox extends JukeBox{
+  private Music music;
   private double oneTimeCost = 1.5; //$s
   private double totalMoney;
   private String newRequest(double money, String request);
@@ -30,4 +34,9 @@ public class MusicalJukebox extends JukeBox{
   }
   public String playRequest(String request);
   public String returnMoney(double change);
+}
+
+public class Music{
+  private ArrayList<String> musicCollection;
+  public String playMusic(String request);
 }
