@@ -3,27 +3,32 @@
 - eliminating bookmarks of pages and highlights of pages
 - Some search related engine and optimizations in storage would be required.
 
-public class BookReader{
-  private HashTable<String, User> users;
-  private HashTable<Genre, ArrayList<Book>> books;
-  public User isUserAuthorized(String user, String password);
-  public ArrayList<Collection> getUserCollections(User user);
-  public ArrayList<Book> browseBooks(Genre genre);
-  public ArrayList<Book> browseBooks();
-  public Book searchBook();
-  public Render renderBook(Book book);
+public class BookReaderSystem{
+  private UserManager userManager;
+  private BookManager bookManager;
+  public BookReaderSystem(){
+    this.UserManager = new UserManager();
+    this.BookManager = new BookManager();
+  }
+  public Display newSession(int userId); // new displays per session
 }
-public class DAO{
-  protected User isUserAuthorized(String user, String password);
-  protected ArrayList<Collection> getUserCollections(User user);
+public class Display{ // per session
+  private Book currentBook;
+  private User currentUser;
+  private int currentPage = 0;
+  public void nextPage();
+  public void previousPage();
+  public void setBook(Book book);
+  public void setUser(Book book);
+  public void refreshPage();
 }
-public class Collection{
-  private String name;
-  private User user;
-  private ArrayList<Book> books;
+public class BookManager{ // singleton
+  private HashTable<Integer, Book> books;
   // getters and setters
-  public void addBook(Book book);
+  public void addBook(int id, Book book);
+  public void removeBook(int id);
   public void removeBook(Book book);
+  public Book searchBook(int id);
 }
 public class Book{
   private final String title;
@@ -33,24 +38,23 @@ public class Book{
   private final char[] content;
   // Getters of above
 }
-public class Render{
-  private Book currentBook;
-  private User currentUser;
-  private int currentPage = 0;
-  private int zoomPercentage = 100;
-  public void nextPage();
-  public void previousPage();
-  public void zoomIn();
-  public void zoomOut();
-  public byte[] displayPage(Book book);
-  public void close();
+public class UserManager{ //singleton
+  private HashTable<Integer, User> users;
+  // getters and setters
+  public void addUser(int id, User user);
+  public void removeUser(int id);
+  public void removeUser(User user);
+  public User searchUser(int id);
+  public User isUserAuthorized(int userId, String password);
 }
 public class User{
+  private int userId;
   private String firstName;
   private String lastName;
   private String password;
   private String username;
-  private ArrayList<Collection> collections;
+  private String accountDetails;
+  public boolean renewMembership(String paymentDetails);
 }
 public enum Genre{
   HORROR, SCIFI, FICTION, ROMANTIC...;
