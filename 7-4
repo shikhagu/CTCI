@@ -1,30 +1,32 @@
 // ParkingLot
 public class ParkingLot{
   private Level[] levels;
-  public Spot findSpot(Vehicle vehicle, String specialCondition); // Calls level and finds a spot atleast of that size
+  private boolean isFull;
+  public ArrayList<Spot> findSpot(Vehicle vehicle, String specialCondition); // Calls level and finds a spot atleast of that size
   public boolean performCostTransaction(String creditcard, String credentials, Spot spot); 
-  public boolean isAvailable(Spot s);
 }
 public class ParkingCost{
   private double smallSpotCostPerHour;
   private double mediumSpotCostPerHour;
   private double largeSpotCostPerHour;
-  public double computeCost(Size spotSize, DateTime startTime);
+  public double computeCost(ArrayList<Spot> spotList);
 }
 public class Level{
   private Spot[] spots;
   private boolean isFull;
-  public Spot
-  public boolean parkVehicle(Vehicle v);
+  public ArrayList<Spot> findSpot(Vehicle V)
+  public boolean parkVehicle(Vehicle v, ArrayList<Spot> spotList);
   public boolean removeVehicle(Vehicle v);
 }
 public class Spot{
+  private Level level;
   private Size size;
   private int row;
   private int serialNum;
   private Vehicle currentVehicle;
   private DateTime startTime;
   public void parkVehicle(Vehicle v);
+  public void clearSpot();
 }
 public enum Size{
   SMALL, MEDIUM, LARGE;
@@ -36,6 +38,6 @@ public abstract class Vehicle{
   private ArrayList<Spot> spots;
   public boolean canFitInSpot(ArrayList<Spot> spot);
   public boolean parkVehicle(ArrayList<Spot> spot);
-  public boolean clearSpot()
+  public boolean clearSpot();
 }
 // vehicle types and properties
