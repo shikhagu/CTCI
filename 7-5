@@ -1,0 +1,57 @@
+// Online Book reader
+
+- eliminating bookmarks of pages and highlights of pages
+- Some search related engine and optimizations in storage would be required.
+
+public class BookReader{
+  private HashTable<String, User> users;
+  private HashTable<Genre, ArrayList<Book>> books;
+  public User isUserAuthorized(String user, String password);
+  public ArrayList<Collection> getUserCollections(User user);
+  public ArrayList<Book> browseBooks(Genre genre);
+  public ArrayList<Book> browseBooks();
+  public Book searchBook();
+  public Render renderBook(Book book);
+}
+public class DAO{
+  protected User isUserAuthorized(String user, String password);
+  protected ArrayList<Collection> getUserCollections(User user);
+}
+public class Collection{
+  private String name;
+  private User user;
+  private ArrayList<Book> books;
+  // getters and setters
+  public void addBook(Book book);
+  public void removeBook(Book book);
+}
+public class Book{
+  private final String title;
+  private final String author;
+  private final String numOfPages;
+  private final Genre genre;
+  private final char[] content;
+  // Getters of above
+}
+public class Render{
+  private Book currentBook;
+  private User currentUser;
+  private int currentPage = 0;
+  private int zoomPercentage = 100;
+  public void nextPage();
+  public void previousPage();
+  public void zoomIn();
+  public void zoomOut();
+  public byte[] displayPage(Book book);
+  public void close();
+}
+public class User{
+  private String firstName;
+  private String lastName;
+  private String password;
+  private String username;
+  private ArrayList<Collection> collections;
+}
+public enum Genre{
+  HORROR, SCIFI, FICTION, ROMANTIC...;
+}
