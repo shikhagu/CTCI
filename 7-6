@@ -1,0 +1,51 @@
+// NXN Jigsaw puzzle
+
+public class Puzzle{
+  private PuzzleCreateManager puzzleCreateManager;
+  private Piece[][] currentPuzzle;
+  private PuzzleSolveManager puzzleSolveManager; 
+  
+}
+
+public class Piece{
+
+  private Image image;
+  private int x; // no getter
+  private int y; // no getter
+  private boolean isCorner;
+  private boolean isBorder;
+}
+
+public class Edge{
+  private Piece parent;
+  private Shape shape;
+  public boolean fitsWith(Edge a);
+}
+
+public enum Shape{
+  INNER, OUTER, FLAT;
+}
+
+public enum Orientation{
+  RIGHT, TOP, LEFT, BOTTOM;
+}
+
+public class PuzzleCreateManager{
+  public PuzzleEgde[][] createPuzzle(Image mainImage, int pieces);
+}
+
+public class Image{
+  private byte[] representImage; // jpg image
+  public void isSameImage(Image a, Image b);
+}
+
+public class PuzzleSolveManager{
+  private PuzzleEgde[][] currentPuzzle;
+  private PuzzleEgde[][] puzzleAttempt;
+  private DateTime startTime;
+  private int edgesLeft;
+  public boolean isEdge(PuzzleEgde a);
+  public boolean setPuzzleEdge(int x, int y, PuzzleEgde a); // returns if set successfully
+  public boolean fitsWith(PuzzleEgde a, PuzzleEgde b); // returns if fits
+  public boolean isCompleted(); // matches and returns if completed successfully
+}
