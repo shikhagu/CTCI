@@ -1,25 +1,29 @@
 // NXN Jigsaw puzzle
 
-public class Puzzle{
+public class PuzzleSystem{
   private PuzzleCreateManager puzzleCreateManager;
-  private Piece[][] currentPuzzle;
   private PuzzleSolveManager puzzleSolveManager; 
-  
 }
 
 public class Piece{
-
+  private <Orientation, Edge> edgeList;
   private Image image;
   private int x; // no getter
   private int y; // no getter
   private boolean isCorner;
   private boolean isBorder;
+  public Piece rotate(int numOfTurnsRight);
 }
 
 public class Edge{
   private Piece parent;
   private Shape shape;
   public boolean fitsWith(Edge a);
+}
+
+public class Image{
+  private byte[] representImage; // jpg image
+  public void isSameImage(Image a, Image b);
 }
 
 public enum Shape{
@@ -29,23 +33,19 @@ public enum Shape{
 public enum Orientation{
   RIGHT, TOP, LEFT, BOTTOM;
 }
-
+------------------------------------------
 public class PuzzleCreateManager{
-  public PuzzleEgde[][] createPuzzle(Image mainImage, int pieces);
+  public Piece[][] createPuzzle(Image mainImage, int pieces);
 }
-
-public class Image{
-  private byte[] representImage; // jpg image
-  public void isSameImage(Image a, Image b);
-}
-
+------------------------------------------
 public class PuzzleSolveManager{
-  private PuzzleEgde[][] currentPuzzle;
-  private PuzzleEgde[][] puzzleAttempt;
+  private ArrayList<Piece> leftPieces;
+  private Piece[][] puzzleSolution;
   private DateTime startTime;
-  private int edgesLeft;
-  public boolean isEdge(PuzzleEgde a);
-  public boolean setPuzzleEdge(int x, int y, PuzzleEgde a); // returns if set successfully
-  public boolean fitsWith(PuzzleEgde a, PuzzleEgde b); // returns if fits
-  public boolean isCompleted(); // matches and returns if completed successfully
+  private DateTime endTime;
+  private int piecesLeft;
+  public boolean setPiece(int x, int y, Piece piece); // returns if set successfully
+  public boolean isCompleted();
+  public void solve();
+    // separate border, corner and inner pieces -> set top left piece -> find fitsWith piece and fit -> complete
 }
