@@ -15,6 +15,7 @@ public class ChatManager{
 public class Chat{
   private User initiater;
   private ChatType chatType;
+  private ArrayList<Users> users;
   private ArrayList<Message> messages;
   public boolean addUser(User user);
   public boolean removeUser(User user);
