@@ -13,6 +13,7 @@ public class ChatManager{
 }
 
 public class Chat{
+  private int chatId;
   private User initiater;
   private ChatType chatType;
   private ArrayList<Users> users;
