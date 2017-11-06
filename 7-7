@@ -1,0 +1,49 @@
+// ChatServer
+
+public class ChatServerSystem{
+  private ChatManager chatManager;
+  private UserManager userManager;
+}
+
+public class ChatManager{
+  private HashMap<Integer, Chat> chats;
+  public Chat newChat(User user);
+  public boolean terminateChat(int chatId);
+  public boolean terminateAllChats();
+}
+
+public class Chat{
+  private User initiater;
+  private ChatType chatType;
+  private ArrayList<Message> messages;
+  public boolean addUser(User user);
+  public boolean removeUser(User user);
+  public boolean sendMessage(Message message);
+  public boolean closeChat();
+}
+
+public enum ChatType{
+  PERSONAL, GROUP;
+}
+
+public class Message{
+  private int chatId;
+  private int userId;
+  private DateTime timestamp;
+  private String message;
+}
+
+public class UserManager{
+  private HashMap<Integer, User> users;
+  public boolean addUser(String details);
+  public boolean removeUser(User user);
+  public boolean blockUser(User initiator, User blockUser);
+}
+
+public class User{
+  private int userId;
+  private String username;
+  private String details;
+  private ArrayList<User> blockedUsers;
+  private String membershipType;
+}
