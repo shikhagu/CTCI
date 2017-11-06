@@ -1,0 +1,47 @@
+// Othello
+
+Assumption:
+- Just object oriented design, no online play
+
+Requirements:
+- Data structures for othello
+- Methods for playing
+
+
+public class Othello{
+  private Board board;
+  private Player playerBlack;
+  private Player playerWhite;
+  
+  public Othello(String player1, String player2){
+    this.board = new Board();
+    this.playerBlack = new Player(player1, Color.BLACK);
+    this.playerWhite = new Player(player2, Color.WHITE);
+  }
+}
+
+public class Board{
+  private Color[][] gameBoard;
+  private int countBlackPieces;
+  private int countWhitePieces;
+  public void initializeBoard(); // default setting set all to null
+  public void setPiece(int x, int y, Color piece); // auto turns pieces in between
+  public void turnPiece(int x, int y);
+  public boolean anyValidMoves(Color color);
+}
+
+public class Player{
+  public Color gameColor;
+  public String details;
+  
+  public Player(String details, Color gameColor){
+    this.details = details;
+    this.gameColor = gameColor;
+  }
+}
+
+public enum Color{
+  BLACK, WHITE;
+}
+
+
