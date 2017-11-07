@@ -5,15 +5,28 @@ public class CircularArray<T> implements Iterator{
   private index;
   
   public CircularArray(int size){
-    this.data = new T[size];
+    this.data = (new T[]) new Object[size];
     this.index = 0;
   }
   
-  public rotate(int x){
-    index = (index + x) % data.length;
+  public int convert(int x){
+    if(x<0)
+      x += data.length;
+    return (index + x) % data.length;
   }
   
-  public iterate(int x){
-    return data[(index + x) % data.length];
+  public void rotate(int x){
+    index = convert(x);
   }
+  
+  public T get(int x){
+    if(x<0 || x>= data.length)
+      return new IndexOutOfBoundsException();
+    return data[convert(x)];
+  }
+  
+  public void set(int x, T val){
+    data[convert(x)] = val;
+  }
+  
 }
