@@ -1,0 +1,28 @@
+// Minesweeper
+
+public class Minesweeper{
+  private Grid grid;
+  private Player player;
+  
+  public Minesweeper(int row, int col, String playerDetails){
+    this.grid = generateGame(row, col);
+    this.player = new Player(playerDetails);
+  }
+  
+  public Grid generateGame(int row, int col); // sets bombs etc.
+}
+
+public class Grid{
+  private Cell[][] grid;
+  public boolean revealCell(int x, int y); // clears up
+  public boolean revealNeighbors(int x, int y);
+  public boolean isCompleted();
+}
+
+public enum Cell{
+  BLANK, ONE, TWO, THREE, FOUR, BOMB;
+}
+
+public class Player{
+  String details;
+}
