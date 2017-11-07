@@ -1,6 +1,6 @@
 // Circular array
 
-public class CircularArray<T> implements Iterator{
+public class CircularArray<T> implements Iterable<T>{
   private T[] data;
   private index;
   
@@ -29,4 +29,30 @@ public class CircularArray<T> implements Iterator{
     data[convert(x)] = val;
   }
   
+  public Iterator<T> iterator(){
+    return new CircularArrayIterator<T>(this);
+  }
+}
+
+public class CircularArrayIterator<TI> implements Iterator<TI> {
+  private TI[] _data;
+  private int _current = -1;
+  
+  public CircularArrayIterator(CircularArray data) {
+    _data = data;
+  }
+  
+  public boolean hasNext()
+  {
+    return _current < _data.length - 1;
+  }
+  
+  public TI next() {
+    _current++;
+    return _data[convert(_current)];
+  }
+  
+  public void remove(){
+    return new UnsupportedOperationException();
+  }
 }
