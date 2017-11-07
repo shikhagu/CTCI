@@ -5,22 +5,31 @@ public class Minesweeper{
   private Player player;
   
   public Minesweeper(int row, int col, String playerDetails){
-    this.grid = generateGame(row, col);
+    this.grid = new Grid(row, col);
     this.player = new Player(playerDetails);
   }
-  
-  public Grid generateGame(int row, int col); // sets bombs etc.
 }
 
 public class Grid{
   private Cell[][] grid;
-  public boolean revealCell(int x, int y); // clears up
-  public boolean revealNeighbors(int x, int y);
+  
+  public boolean isBomb(int row, int col);
   public boolean isCompleted();
+  public Grid generateGrid(int numRows, int numCols); // sets bombs etc.
+  public boolean expandNeighbors(int row, int col);
+  
+  public Grid(int row, int col){
+    this.grid = generateGrid(row, col);
+  }
 }
 
-public enum Cell{
-  BLANK, ONE, TWO, THREE, FOUR, BOMB;
+public class Cell{
+  private CellType type;
+  private int number;
+}
+
+public enum CellType{
+  BLANK, NUMBER, BOMB;
 }
 
 public class Player{
