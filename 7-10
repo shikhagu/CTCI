@@ -12,25 +12,32 @@ public class Minesweeper{
 
 public class Grid{
   private Cell[][] grid;
+  private int numRemaining;   ////
   
-  public boolean isBomb(int row, int col);
-  public boolean isCompleted();
-  public Grid generateGrid(int numRows, int numCols); // sets bombs etc.
-  public boolean expandNeighbors(int row, int col);
+  public Grid generateGrid(int numRows, int numCols, int numBombs); // sets bombs etc.
   
-  public Grid(int row, int col){
-    this.grid = generateGrid(row, col);
+  public Grid(int row, int col, int numBombs){
+    this.grid = generateGrid(row, col, numBombs);
   }
+  
+  public void initializeBoard();
+  public boolean flip(int row, int col, boolean isGuess);
+  public boolean expandNeighbors(int row, int col);
+
 }
 
 public class Cell{
-  private CellType type;
+  private int row;
+  private int col;
+  private boolean isBomb;
   private int number;
+  private boolean isExposed;  ///
+  private boolean isGuessed;  //
+  
+  public boolean flip();      ///
+  public boolean isGuess();
 }
 
-public enum CellType{
-  BLANK, NUMBER, BOMB;
-}
 
 public class Player{
   String details;
