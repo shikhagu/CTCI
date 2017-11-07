@@ -1,0 +1,19 @@
+// Circular array
+
+public class CircularArray<T> implements Iterator{
+  private T[] data;
+  private index;
+  
+  public CircularArray(int size){
+    this.data = new T[size];
+    this.index = 0;
+  }
+  
+  public rotate(int x){
+    index = (index + x) % data.length;
+  }
+  
+  public iterate(int x){
+    return data[(index + x) % data.length];
+  }
+}
