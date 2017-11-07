@@ -13,8 +13,8 @@ public class Othello{
   private Player playerBlack;
   private Player playerWhite;
   
-  public Othello(String player1, String player2){
-    this.board = new Board();
+  public Othello(int rows, int cols, String player1, String player2){
+    this.board = new Board(rows, cols);
     this.playerBlack = new Player(player1, Color.BLACK);
     this.playerWhite = new Player(player2, Color.WHITE);
   }
@@ -24,10 +24,14 @@ public class Board{
   private Color[][] gameBoard;
   private int countBlackPieces;
   private int countWhitePieces;
+  
   public void initializeBoard(); // default setting set all to null
   public void setPiece(int x, int y, Color piece); // auto turns pieces in between
-  public void turnPiece(int x, int y);
-  public boolean anyValidMoves(Color color);
+  public void turnPiece(int x, int y, String direction);
+  
+  public Board(int rows, int cols){
+    this.gameBoard = new Color[rows][cols];
+  }
 }
 
 public class Player{
