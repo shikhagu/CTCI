@@ -1,0 +1,29 @@
+// In-memory file system
+
+public abstract class Entry{
+  private String name;
+  private int size;
+  private String location;
+  private Directory parentDirectory;
+  private DateTime creationTime;
+  private DateTime lastModifiedTime;
+  private Permission permissions;
+  
+  public abstract int size();
+  
+  public void delete();
+}
+
+public class Directory extends Entry{
+  private ArrayList<Entry> entries;
+  
+  public File createFile();
+  public Directory createDirectory();
+  public ArrayList<Entry> listEntry();
+  public boolean deleteEntry();
+}
+
+public class File extends Entry{
+  private byte[] content;
+  private int size;
+}
