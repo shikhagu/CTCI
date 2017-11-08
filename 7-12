@@ -1,0 +1,27 @@
+// hash table
+
+HashTable<K, V>
+Node[] data
+int size;
+
+hash(K key);  key.hashOf() % data.length;
+
+add(K key, V value)
+check if already existing, change value
+create new node and add at head
+
+if load factor > 0.7 , expand array
+size / data.length > 0.7
+
+remove(K key)
+remove for head
+remove if in chain
+not present
+
+get(K key)
+iterate through the chain
+
+Node<K, V>
+K key
+V value
+Node next;
