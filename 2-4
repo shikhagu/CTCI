@@ -9,7 +9,7 @@ lPtr -> null
 public void partitionList(Node head, int threshold)
 {
   Node gePtr = head;
-  Node lPtr;
+  Node lPtr = null;
   
   while(gePtr != null)
   {
@@ -35,3 +35,5 @@ public void partitionList(Node head, int threshold)
   }
   
 }
+
+https://ideone.com/Zr3laU
