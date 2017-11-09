@@ -1,0 +1,26 @@
+k = 5
+
+1->2->3->4->5->6->7->8->9->10->11->12
+ptr2 -> 12
+count -> 5
+ptr1 -> 7
+
+public Node findKthToLast(Node head){
+  Node ptr2 = head;
+  int count = 0;
+  
+  while(ptr2 != null && count != k)
+  {
+    count++;
+    ptr2 = ptr2.next;
+  }
+  
+  Node ptr1 = head;
+  
+  while(ptr2.next != null)
+  {
+    ptr2 = ptr2.next;
+    ptr1 = ptr1.next;
+  }
+  return ptr1;
+}
