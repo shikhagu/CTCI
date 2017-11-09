@@ -1,0 +1,54 @@
+1 -> 2 -> 4 -> 2
+hs -> 1,2,4
+prev -> 4
+n -> 2
+
+public Node removeDups(Node n){
+  HashSet<Integer> uniqueSet = new HashSet<Integer>();
+  Node prev = null;
+  
+  while(n != null){
+    int data = n.data;
+    if(uniqueSet.contains(n))
+    {
+      prev.next = n.next;
+    }
+    else
+    {
+      uniqueSet.add(n.data);
+      prev = n;
+    }
+    n = n.next;
+  }
+  
+  return n;
+}
+
+1 -> 2 -> 4' -> 4''
+slowPtr -> 4'
+fastPtr -> 4''
+prev -> 1
+
+// No temporary buffer
+
+public Node removeDups(Node n){
+  Node slowPtr = n;
+  while(slowPtr != null)
+  {
+    Node fastPtr = slowPtr;
+
+    while(fastPtr.next != null) 
+    {
+      if(slowPtr.data == fastPtr.next.data)
+      {
+        fastPtr.next = fastPtr.next.next;
+      }
+      else
+      {
+        fastPtr = fastPtr.next;
+      }
+    }
+    slowPtr = slowPtr.next;
+  }
+  return n;
+}
