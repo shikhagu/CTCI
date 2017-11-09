@@ -1,0 +1,31 @@
+// Partition linked list
+
+public void partitionList(Node head, int threshold)
+{
+  Node gePtr = head;
+  Node lPtr;
+  
+  while(gePtr != null)
+  {
+    if(gePtr.data < threshold)
+      gePtr = gePtr.next;
+    else
+      break;
+  }
+  
+  if(gePtr != null)
+    lPtr = gePtr.next;
+  
+  while(lPtr != null)
+  {
+    if(lPtr.data < threshold)
+    {
+      int temp = gePtr.data;
+      gePtr.data = lPtr.data;
+      lPtr.data = temp;
+      gePtr = gePtr.next;
+    } 
+    lPtr = lPtr.next;
+  }
+  
+}
