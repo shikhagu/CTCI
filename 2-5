@@ -17,10 +17,15 @@ public Node sum(Node num1, Node num2){
       num1.data = 0;
     if(num2 == null)
       num2.data = 0;
+      
     sum.data = (num1.data + num2.data + carry) % 10;
     carry = (num1.data + num2.data) / 10;
-    num1 = num1.next;
-    num2 = num2.next;
+    
+    if(num1 != null)
+      num1 = num1.next;
+    if(num2 != null)
+      num2 = num2.next;
+      
     sum.next = new Node();
     sum = sum.next;
   }
