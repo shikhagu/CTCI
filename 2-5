@@ -19,7 +19,7 @@ public Node sum(Node num1, Node num2){
       num2.data = 0;
       
     sum.data = (num1.data + num2.data + carry) % 10;
-    carry = (num1.data + num2.data) / 10;
+    carry = (num1.data + num2.data + carry) / 10;
     
     if(num1 != null)
       num1 = num1.next;
