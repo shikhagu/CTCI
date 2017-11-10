@@ -1,7 +1,6 @@
 public boolean ispalindrome(Node forwardHead)
 {
   Node reverseHead = reverseList(forwardHead);
-  
   while(reverseHead != null)
   {
     if(reverseHead.data != forwardHead.data)
