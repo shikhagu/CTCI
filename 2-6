@@ -1,0 +1,34 @@
+public boolean ispalindrome(Node forwardHead)
+{
+  Node reverseHead = reverseList(forwardHead);
+  
+  while(reverseHead != null)
+  {
+    if(reverseHead.data != forwardHead.data)
+      return false;
+    reverseHead = reverseHead.next;
+    forwardHead = forwardHead.next;
+  }
+  return true;
+}
+
+
+1 -> 2 -> 3 -> 4
+forwardHead -> 1
+reverseHead -> null <- 1
+temp -> 1
+
+public Node reverseList(Node forwardHead){
+  Node reverseHead = null;
+  
+  while(forwardHead != null)
+  {
+    Node temp = new Node();
+    temp.data = forwardHead.data;
+    temp.next = reverseHead;
+    reverseHead = temp;
+    forwardHead = forwardHead.next;
+  }
+
+  return reverseHead;
+}
