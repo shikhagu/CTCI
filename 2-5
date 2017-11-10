@@ -37,3 +37,62 @@ public Node sum(Node num1, Node num2){
 
 -----------------------
 Reverse order of numbers
+
+1 -> 8 -> 9 -> 7
+0 -> 5 -> 8 -> 6
+num1 -> 
+num2 -> 
+
+public class PartialSum{
+  Node sum = null;
+  int carry = 0;
+  
+  public Node sum(Node num1, Node num2){
+    //Pad
+    if(len(num1) < len(num2))
+      num1 = pad(num1, 0, len(num2) - len(num1));
+    if(len(num1) > len(num2))
+      num2 = pad(num2, 0, len(num1) - len(num2));
+    
+    //Add
+    PartialSum result = add(num1, num2);
+    
+    //Carry
+    if(result.carry != 0)
+      result.sum = insertBefore(result.sum, result.carry);
+    
+    return result.sum;
+  }
+  
+  public PartialSum add(Node num1, Node num2)
+  {
+    if(num1 == null && num2 == null)
+    {
+      PartialSum result = new PartialSum();
+      return result;
+    }
+    PartialSum result = add(num1.next, num2.next);
+    int val = num1.data + num2.data + result.carry;
+    result.sum = insertBefore(result.sum, val%10);
+    result.carry = val/10;
+    return result;
+  }
+  
+  public Node pad(Node node, int data, int numTimes)
+  {
+    Node head = node;
+    for(int i=0; i<numTimes; i++)
+    {
+      head = insertBefore(head, data);
+    }
+    return head;
+  }
+  
+  public Node insertBefore(Node node, int data)
+  { 
+    Node head = new Node();
+      head.data = data;
+      head.next = node;
+      return head;
+  }
+}
