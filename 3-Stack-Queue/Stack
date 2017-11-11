@@ -14,7 +14,7 @@ public class Stack<T>{
   public T pop()
   {
     if(top == null) 
-      return new EmptyStackException();
+      throw new EmptyStackException();
       
     T result = top.data;
     top = top.next;
