@@ -1,0 +1,42 @@
+public class Stack<T>{
+
+  public class StackNode<T>{
+    private T data = null;
+    private StackNode next = null;
+    
+    public StackNode(T data){
+      this.data = data;
+    }
+  }
+  
+  private StackNode<T> top;
+  
+  public StackNode pop()
+  {
+    if(top == null) 
+      return new EmptyStackException();
+      
+    StackNode result = top;
+    top = top.next;
+    return result;
+  }
+  
+  public void push(StackNode node)
+  {
+    if(node != null)
+    {
+      node.next = top;
+      top = node;
+    }
+  }
+  
+  public StackNode peek()
+  {
+    return top;
+  }
+  
+  public boolean isEmpty()
+  {
+    return top == null;
+  }
+}
