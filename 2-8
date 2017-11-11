@@ -1,0 +1,33 @@
+// Detect corrupt node in circular linked list
+
+A -> B -> C -> D -> E -> F -> C
+
+slowPtr -> C
+fastPtr -> C
+
+public Node getCorruptNode(Node head) {
+  Node slowPtr = head;
+  Node fastPtr = head;
+  
+  while(slowPtr != null || fastPtr.next != null)
+  {
+    slowPtr = slowPtr.next;
+    fastPtr = fastPtr.next.next;
+    if (slowPtr == fastPtr)
+      break;
+  }
+  
+  if(slowPtr == null or fastPtr.next == null)
+    return null;
+  
+  slowPtr = head;
+  
+  while(slowPtr != null || fastPtr != null)
+  {
+    slowPtr = slowPtr.next;
+    fastPtr = fastPtr.next;
+    if (slowPtr == fastPtr)
+      break;
+  }
+  return slowPtr;
+}
