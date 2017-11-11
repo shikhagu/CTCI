@@ -1,8 +1,8 @@
 public class Stack<T>{
 
   public class StackNode<T>{
-    private T data = null;
-    private StackNode next = null;
+    private T data;
+    private StackNode next;
     
     public StackNode(T data){
       this.data = data;
@@ -11,28 +11,28 @@ public class Stack<T>{
   
   private StackNode<T> top;
   
-  public StackNode pop()
+  public T pop()
   {
     if(top == null) 
       return new EmptyStackException();
       
-    StackNode result = top;
+    T result = top.data;
     top = top.next;
     return result;
   }
   
-  public void push(StackNode node)
+  public void push(T item)
   {
-    if(node != null)
-    {
-      node.next = top;
-      top = node;
-    }
+    StackNode<T> node = new StackNode<T>(item);
+    node.next = top;
+    top = node;
   }
   
-  public StackNode peek()
+  public T peek()
   {
-    return top;
+    if(top == null) 
+      return new EmptyStackException();
+    return top.data;
   }
   
   public boolean isEmpty()
