@@ -2,7 +2,7 @@ public class Stack<T>{
 
   public class StackNode<T>{
     private T data;
-    private StackNode next;
+    private StackNode<T> next;
     
     public StackNode(T data){
       this.data = data;
