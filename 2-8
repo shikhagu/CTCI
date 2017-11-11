@@ -9,7 +9,7 @@ public Node getCorruptNode(Node head) {
   Node slowPtr = head;
   Node fastPtr = head;
   
-  while(slowPtr != null || fastPtr.next != null)
+  while(fastPtr != null && fastPtr.next != null)
   {
     slowPtr = slowPtr.next;
     fastPtr = fastPtr.next.next;
@@ -17,17 +17,15 @@ public Node getCorruptNode(Node head) {
       break;
   }
   
-  if(slowPtr == null or fastPtr.next == null)
+  if(slowPtr == null || fastPtr.next == null)
     return null;
   
   slowPtr = head;
-  
-  while(slowPtr != null || fastPtr != null)
+  while(slowPtr != fastPtr)
   {
     slowPtr = slowPtr.next;
     fastPtr = fastPtr.next;
-    if (slowPtr == fastPtr)
-      break;
   }
+  
   return slowPtr;
 }
