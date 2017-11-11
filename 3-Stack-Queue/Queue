@@ -3,7 +3,7 @@ public class Queue<T>{
     private T data;
     private QueueNode<T> next;
     
-    public QueueNode<T>(T data){
+    public QueueNode(T data){
       this.data = data;
     }
   }
@@ -13,8 +13,11 @@ public class Queue<T>{
   
   public void add(T item){
     QueueNode<T> node = new QueueNode<T>(item);
-    tail.next = node;
+    if(tail != null)
+      tail.next = node;
     tail = node;
+    if(head == null)
+      head = tail;
   }
   
   public T remove(){
@@ -23,6 +26,8 @@ public class Queue<T>{
       
     T item = head.data;
     head = head.next;
+    if(head == null)
+      tail = null;
     return item;
   }
   
