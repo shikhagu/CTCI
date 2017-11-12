@@ -1,0 +1,40 @@
+public class MyQueue<T>{
+
+  private Stack<T> oldest;
+  private Stack<T> newest;
+  
+  public MyQueue(){
+    oldest = new Stack<T>();
+    newest = new Stack<T>();
+  }
+  
+  public void add(T item){
+    newest.push(item);
+  }
+  
+  public T remove(){
+    if(oldest.isEmpty() && newest.isEmpty())
+      throw new EmptyQueueException();
+    if(oldest.isEmpty() && !newest.isEmpty())
+      fillOldest();
+    return oldest.pop();
+  }
+  
+  public T peek(){
+    if(oldest.isEmpty() && newest.isEmpty())
+      throw new EmptyQueueException();
+    if(oldest.isEmpty() && !newest.isEmpty())
+      fillOldest();
+    return oldest.peek();
+  }
+  
+  public boolean isEmpty(){
+    return oldest.isEmpty() && newest.isEmpty();
+  }
+  
+  public void fillOldest(){
+    while(!newest.isEmpty()){
+      oldest.push(newest.pop());
+    }
+  }
+}
