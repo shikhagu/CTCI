@@ -54,6 +54,7 @@ public class SetOfStacks<T> extends Stack<T>{
     if(currentStack == null || currentStack.capacity == capacityThreshold){
       Stack<T> stack = new Stack<T>();
       stack.push(item);
+      stack.setCapacity(1);
       set.add(stack);
     }
     // Push to current stack
