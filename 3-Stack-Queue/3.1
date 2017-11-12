@@ -1,1 +1,69 @@
 
+// Fixed division
+
+[0, n/3)
+[n/3, 2n/3)
+[2n/3, n)
+
+public class MultiStack<T>{
+  public T[] data;
+  public int numStack = 3;
+  public int capacity;
+  public int[] top = new int[3];
+  public int[] length = new int[3];
+  
+  public MultiStack(int arraySize){
+    this.data = (new T[]) new Object[arraySize]();  ///
+    this.capacity = arraySize / 3;
+    top = {-1, -1, -1};
+    length = {0, 0, 0};
+  }
+  
+  public int getIndex(int stackNum){
+    if(length[stackNum-1] == 0)
+      return -1;
+    return top[stackNum-1];
+  }
+  
+  public T pop(int stackNum){
+    int index = getIndex(stackNum);
+    if(index == -1)
+      throw new StackEmptyException();
+    T item = data[index];
+    int length = length[stackNum-1];
+    length--;
+    if(length == 0)
+      top = -1;
+    top = top-1;
+    return item;
+  }
+  
+  public T peek(int stackNum){
+    int index = getIndex(stackNum);
+    if(index == -1)
+      throw new StackEmptyException();
+    T item = data[index];
+    return item;
+  }
+  
+  public void push(int stackNum, T item){
+    int length = length[stackNum-1];
+    
+    if(length == capacity)
+      throw StackFullException();
+      
+    int index = 0;
+    if(length == 0){
+      index = ((stackNum-1) * data.length) / 3;
+    }
+    else{
+      index = top[stackNum-1] + 1;
+    }
+    data[index] = item;
+    top[stackNum-1] = index;
+  }
+  
+  public boolean isEmpty(int stackNum){
+    return top[stackNum-1] == -1;
+  }
+}
