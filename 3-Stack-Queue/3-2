@@ -1,22 +1,26 @@
 // Tracking local minimum
 
-public class StackWithMin extends Stack<Integer>{
-  public int getMin(){
-    if(top == null)
-      throw EmptyStackException();
-    return top.min;
+public class StackWithMin extends Stack<NodeWithMin>{
+  
+  public class NodeWithMin{
+    private int data;
+    private NodeWithMin next;
+    private int min;
+    
+    public NodeWithMin(int data, int min){
+      this.data = data;
+      this.min = min;
+    }
   }
   
   public void push(int item){
-    StackNode<Integer> node = new StackNode<Integer>(item, min(item));
-    node.next = top;
-    top = node;
+    int min = Math.min(item, min());
+    super.push(new NodeWithMin(item, min));
   }
   
   private int min(int item){
-    if(isEmpty())
-      return item;
-    return Math.min(item, top.min);
+    if(this.isEmpty())
+      return Integer.MAX_VALUE;
+    return peek().min;
   }
-  
 }
