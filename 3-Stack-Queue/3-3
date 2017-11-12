@@ -1,23 +1,27 @@
 // Set of stacks
 
-public class SetOfStacks<T> extends Stack<T>{
-  private int capacity; // used at stack level
-  private int capacityThreshold;  // used at set level
-  private ArrayList<Stack<T>> set;
+public class StackWithCapacity<T> extends Stack<T>{
+  private int capacity;
+  // getters and setters
+}
+
+public class SetOfStacks<T>{
+  private int capacityThreshold;
+  private ArrayList<StackWithCapacity<T>> set;
   
   public SetOfStacks(int capacityThreshold){
-    set = new ArrayList<Stack<T>>();
+    set = new ArrayList<StackWithCapacity<T>>();
     this.capacityThreshold = capacityThreshold;
   }
   
-  public Stack<T> currentStack(){
+  public StackWithCapacity<T> currentStack(){
     if(set.size() == 0)
       return null;
     return set.get(set.size()-1));
   }
   
   public T peek(){
-    Stack<T> currentStack = currentStack();
+    StackWithCapacity<T> currentStack = currentStack();
     
     if(currentStack == null)
       throw new EmptyStackException();
@@ -26,7 +30,7 @@ public class SetOfStacks<T> extends Stack<T>{
   }
   
   public T pop(){
-    Stack<T> currentStack = currentStack();
+    StackWithCapacity<T> currentStack = currentStack();
     
     // Empty stack
     if(currentStack == null)
@@ -48,11 +52,11 @@ public class SetOfStacks<T> extends Stack<T>{
   }
   
   public void push(T item){
-    Stack<T> currentStack = currentStack();
+    StackWithCapacity<T> currentStack = currentStack();
     
     // Create a new stack
     if(currentStack == null || currentStack.capacity == capacityThreshold){
-      Stack<T> stack = new Stack<T>();
+      StackWithCapacity<T> stack = new StackWithCapacity<T>();
       stack.push(item);
       stack.setCapacity(1);
       set.add(stack);
@@ -63,4 +67,11 @@ public class SetOfStacks<T> extends Stack<T>{
       currentStack.setCapacity(currentStack.getCapacity() - 1);
     }
   }
+  
+  public T pop(int index){
+    //
+  }
 }
+
+
+
