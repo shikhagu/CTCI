@@ -1,4 +1,4 @@
-// Tracking local minimum
+// Tracking local minimum in every node
 
 public class StackWithMin extends Stack<NodeWithMin>{
   
@@ -22,5 +22,36 @@ public class StackWithMin extends Stack<NodeWithMin>{
     if(this.isEmpty())
       return Integer.MAX_VALUE;
     return peek().min;
+  }
+}
+
+
+// Tracking a stack of min
+
+public class StackWithMin extends Stack<Integer>{
+  private Stack<Integer> minStack;
+  
+  public StackWithMin(){
+    minStack = new Stack<Integer>();
+  }
+  
+  public void push(Integer data){
+    StackNode<Integer> node = new StackNode<Integer>(data);
+    if(data <= min())
+      minStack.push(data);
+    super.push(data);
+  }
+
+  public Integer pop(){
+    Integer data = super.pop();
+    if(data == min())
+      minStack.pop();
+    return data;
+  }
+  
+  public Integer min(){
+    if(minStack.isEmpty())
+      return Integer.MAX_VALUE;
+    return minStack.peek();
   }
 }
