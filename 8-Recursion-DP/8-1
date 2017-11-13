@@ -1,0 +1,35 @@
+public void numWays(int n){
+  if(n == 1 || n == 2)
+    return n;
+  if(n == 3)
+    return 4;
+  return numWays(n-1) + numWays(n-2) + numWays(n-3);
+}
+
+// Memoization
+
+5
+i = 4
+d = 7
+i = 5
+2 + 4 + 7 = 13
+
+public void numWays(int n){
+  if(n == 1 || n == 2)
+    return n;
+  if(n == 3)
+    return 4;
+    
+  int a = 1;
+  int b = 2;
+  int c = 4;
+  int d = 0;
+  for(int i = 4; i <= n; i++){
+    d = a + b + c;
+    a = b;
+    b = c;
+    c = d;
+  }
+  
+  return d;
+}
