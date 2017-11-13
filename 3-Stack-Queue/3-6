@@ -1,0 +1,57 @@
+public class Animal{
+    private DateTime arrivalTime;
+}
+public class Dog extends Animal{
+}
+public class Cat extends Animal{
+}
+
+public class AnimalQueue<T extends Animal>{
+    private LinkedList<Cat> catList;
+    private LinkedList<Dog> dogList;
+  
+    public void enqueue(Animal animal){
+        if(animal instanceOf Cat){
+            catList.addLast(animal);
+        }
+        else if(animal instanceOf Dog){
+            dogList.addLast(animal);
+        }
+        else{
+            throw new UnknownAnimalException();
+        }
+    }
+    
+    public Animal dequeueAny(){
+        Cat oldestCat = null;
+        Dog oldestDog = null;
+        if(catList.size() > 0)
+            oldestCat = catList.getFirst();
+        if(dogList.size() > 0)
+            oldestDog = dogList.getFirst();
+        
+        if(oldestCat == null && oldestDog == null)
+            throw new EmptyAnimalQueueException();
+        else if(oldestCat == null && oldestDog != null)
+            dequeueDog();
+        else if(oldestCat != null && oldestDog == null)
+            dequeueCat();
+        else if(oldestCat != null && oldestDog != null &&
+            oldestCat.getArrivalTime() < oldestDog.getArrivalTime())
+            dequeueCat();
+        else
+            dequeueDog();
+    }
+    
+    public Cat dequeueCat(){
+        Cat oldestCat = catList.getFirst();
+        catList.remove(oldestCat);
+        return oldestCat;
+    }
+    
+    public Dog dequeueDog(){
+        Dog oldestDog = dogList.getFirst();
+        dogList.remove(oldestDog);
+        return oldestDog;
+    }
+}
