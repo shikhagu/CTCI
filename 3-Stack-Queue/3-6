@@ -10,12 +10,17 @@ public class AnimalQueue<T extends Animal>{
     private LinkedList<Cat> catList;
     private LinkedList<Dog> dogList;
   
+    public AnimalQueue(){
+        catList = new LinkedList<Cat>();
+        dogList = new LinkedList<Dog>();
+    }
+    
     public void enqueue(Animal animal){
         if(animal instanceOf Cat){
-            catList.addLast(animal);
+            catList.addLast((Cat) animal);
         }
         else if(animal instanceOf Dog){
-            dogList.addLast(animal);
+            dogList.addLast((Dog) animal);
         }
         else{
             throw new UnknownAnimalException();
