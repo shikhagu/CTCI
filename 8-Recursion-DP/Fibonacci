@@ -1,0 +1,36 @@
+// Recursion
+
+public int fibo(int n){
+  if(n == 1 || n == 0)
+    return n;
+  return fibo(n-1) + fibo(n-2);
+}
+
+// Dynamic Programming
+
+// Top Down
+
+public int fibo(int n, int[] memo){
+  if(n == 1 || n == 0)
+    return n;
+  if(memo[n] == 0)
+    memo[n] = fibo(n-1, memo) + fibo(n-2, memo);
+  return memo[n];
+}
+
+
+// Bottom up
+
+public int fibo(int n){
+  if(n == 1 || n == 0)
+    return n;
+  int a = 0;
+  int b = 1;
+  int c = 0;
+  for(int i = 2; i <= n ; i++){
+    c = a + b;
+    a = b;
+    b = c;
+  }
+  return c;
+}
