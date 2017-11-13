@@ -44,13 +44,17 @@ public class AnimalQueue<T extends Animal>{
     }
     
     public Cat dequeueCat(){
-        Cat oldestCat = catList.getFirst();
+        Cat oldestCat = null;
+        if(catList.size() > 0)
+            oldestCat = catList.getFirst();
         catList.remove(oldestCat);
         return oldestCat;
     }
     
     public Dog dequeueDog(){
-        Dog oldestDog = dogList.getFirst();
+        Dog oldestDog = null;
+        if(dogList.size() > 0)
+            oldestDog = dogList.getFirst();
         dogList.remove(oldestDog);
         return oldestDog;
     }
