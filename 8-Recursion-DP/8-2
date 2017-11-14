@@ -28,12 +28,48 @@ public ArrayList<Point> findPath(boolean[][] maze){
 }
 
 public boolean isPath(boolean[][] maze, int row, int col, ArrayList<Point> path){
-    if(row < 0 || col < 0 || maze[row][col])
+    if(row < 0 || col < 0 || !maze[row][col])
         return false;
     if((row == 0 && col == 0) || isPath(maze, row - 1, col, path)
         || isPath(maze, row, col-1, path)){
         path.add(new Point(row, col));
         return true;
     }
+    return false;
+}
+
+
+-------------------------------------------------------
+Memoization
+
+
+
+public ArrayList<Point> findPath(boolean[][] maze){
+    if(maze == null || maze.length == 0)
+        return null;
+    ArrayList<Point> path = new ArrayList<Point>();
+    HashSet<Point> failedNodes = new HashSet<Point>();
+    if(isPath(maze, maze.length - 1, maze[0].length - 1, path, failedNodes))
+        return path;
+    else
+        return null;
+}
+
+public boolean isPath(boolean[][] maze, int row, int col, ArrayList<Point> path, HashSet<Point> failedNodes){
+    boolean isPath = false;
+    if(row < 0 || col < 0 || !maze[row][col])
+        isPath = false;
+    
+    Point point = new Point(row, col);
+    
+    if(failedNodes.contains(p))
+        return false;
+        
+    if((row == 0 && col == 0) || isPath(maze, row - 1, col, path)
+        || isPath(maze, row, col-1, path)){
+        path.add(point);
+        return true;
+    }
+    failedNodes.add(point);
     return false;
 }
