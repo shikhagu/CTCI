@@ -1,0 +1,39 @@
+findPath(maze, 2,2)
+
+Maze
+0,0|0,1|0,2|
+------------
+1,0|<1,1>|1,2|
+------------
+2,0|2,1|2,2|
+------------
+
+Path -> 0,0 -> 0, 1 -> 0, 2 -> 1, 2 -> 2,2
+
+isPath(maze, 2, 2, path)
+isPath(maze, 1, 2, path)
+isPath(maze, 0, 2, path)
+isPath(maze, 0, 1, path)
+isPath(maze, 0, 0, path)
+
+
+public ArrayList<Point> findPath(boolean[][] maze){
+    if(maze == null || maze.length == 0)
+        return null;
+    ArrayList<Point> path = new ArrayList<Point>();
+    if(isPath(maze, maze.length - 1, maze[0].length - 1, path))
+        return path;
+    else
+        return null;
+}
+
+public boolean isPath(boolean[][] maze, int row, int col, ArrayList<Point> path){
+    if(row < 0 || col < 0 || maze[row][col])
+        return false;
+    if((row == 0 && col == 0) || isPath(maze, row - 1, col, path)
+        || isPath(maze, row, col-1, path)){
+        path.add(new Point(row, col));
+        return true;
+    }
+    return false;
+}
