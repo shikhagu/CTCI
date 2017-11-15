@@ -16,8 +16,8 @@ value = 1
 
 
 public ArrayList<ArrayList<Integer>> getSubsets(ArrayList<Integer> inputSet, int index){
-    if(index<0 || index > inputSet.size)
-        throw new ArrayListOutOfBoundsException();
+    if(index<0 || index > inputSet.size())
+        throw new Exception();
         
     ArrayList<ArrayList<Integer>> currSubsets = new ArrayList<ArrayList<Integer>>();    
     int currValue = inputSet.get(index);
@@ -29,12 +29,15 @@ public ArrayList<ArrayList<Integer>> getSubsets(ArrayList<Integer> inputSet, int
         // []
         ArrayList<Integer> emptySubset = new ArrayList<Integer>();
         currSubsets.add(emptySubset); 
-        return subsets;
+        return currSubsets;
     }
     
     ArrayList<ArrayList<Integer>> prevSubsets = getSubsets(inputSet, index-1);
-    for(ArrayList<Integer> currSet : prevSubsets){
-        currSubsets.add(currSet.add(currentValue));
+    for(ArrayList<Integer> currSubset : prevSubsets){
+        ArrayList<Integer> newSubset = new ArrayList<Integer>();
+        newSubset.addAll(currSubset);
+        newSubset.add(currValue);
+        currSubsets.add(newSubset);
     }
     currSubsets.addAll(prevSubsets);
     
