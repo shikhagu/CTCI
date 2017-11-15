@@ -1,0 +1,55 @@
+// Magic Index - disinct
+
+public int getMagicIndex(int[] array, int index){
+    if(array[index] > index)
+        return -1;
+    else if(array[index] < index)
+        return getMagicIndex(array, index+1);
+    else if(array[index] == index)
+        return index; 
+}
+
+//CTCI
+
+public int getMagicIndex(int[] array, int start, int end)
+{
+    if(end < start)
+        return -1;
+        
+    int mid = (start + end)/2;
+    if(array[mid] == mid)
+        return mid;
+    
+    if(array[mid] > mid)
+        return getMagicIndex(array, start, mid-1);
+    else
+        return getMagicIndex(array, mid+1, end);
+}
+
+
+// Magic Index - non disinct
+
+public int getMagicIndex(int[] array, int index){
+    if(array[index] > index)
+        return getMagicIndex(array, array[index]);
+    else if(array[index] < index)
+        return getMagicIndex(array, index+1);
+    else if(array[index] == index)
+        return index; 
+}
+
+public int getMagicIndex(int[] array, int start, int end)
+{
+    if(end < start)
+        return -1;
+        
+    int mid = (start + end)/2;
+    if(array[mid] == mid)
+        return mid;
+    
+    int left = getMagicIndex(array, start, min(mid-1, array[mid]));
+    if(left >= 0)
+        return left;
+    retrun getMagicIndex(array, max(mid+1, array[mid]), end);
+    
+}
