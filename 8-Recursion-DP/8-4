@@ -1,0 +1,42 @@
+inputSet -> [1,2,3]
+index -> 2
+
+getSubsets(input, 2)
+prevSubsets = [[1,2], [2], [1],[]]
+currSubsets = [[1,2], [2], [1],[], [1,2,3], [2,3], [1,3],[3]]
+currentValue = 3
+
+getSubsets(input, 1)
+prevSubsets = [[1],[]]
+currSubsets -> [[1,2], [2], [1],[]]
+currentValue = 2
+getSubsets(input, 0)
+value = 1
+[[1],[]]
+
+
+public ArrayList<ArrayList<Integer>> getSubsets(ArrayList<Integer> inputSet, int index){
+    if(index<0 || index > inputSet.size)
+        throw new ArrayListOutOfBoundsException();
+        
+    ArrayList<ArrayList<Integer>> currSubsets = new ArrayList<ArrayList<Integer>>();    
+    int currValue = inputSet.get(index);
+    if(index == 0){
+        // [1]
+        ArrayList<Integer> valueSubset = new ArrayList<Integer>();
+        valueSubset.add(currValue);
+        currSubsets.add(valueSubset); 
+        // []
+        ArrayList<Integer> emptySubset = new ArrayList<Integer>();
+        currSubsets.add(emptySubset); 
+        return subsets;
+    }
+    
+    ArrayList<ArrayList<Integer>> prevSubsets = getSubsets(inputSet, index-1);
+    for(ArrayList<Integer> currSet : prevSubsets){
+        currSubsets.add(currSet.add(currentValue));
+    }
+    currSubsets.addAll(prevSubsets);
+    
+    return currSubsets;
+}
