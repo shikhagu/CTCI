@@ -1,0 +1,79 @@
+public class HashNode<K,V> {
+  K key;
+  V value;
+  HashNode<K,V> next;
+  // constructor
+  //getters setters
+}
+
+public class HashMap<K,V> {
+  private ArrayList<HashNode<K,V>> buckets;
+  private int numBuckets;
+  private int size;
+  
+  private int getIndex(final K key) {
+    return key.hashCode() % numBuckets;
+  }
+  public V get(final K key) {
+    final int index = getIndex(key);
+    HashNode<K,V> head = buckets.get(index);
+    while(head != null) {
+      if(head.key.equals(key)) {
+        return head.value;
+      }
+      head = head.next;
+    }
+    return -1;
+  }
+  
+  public void add(final K key, final V value) {
+    // get index
+    final int index = getIndex(key);
+    HashNode<K,V> head = buckets.get(index);
+    HashNode<K,V> newNode = new HashNode<K,V>(key, value);
+
+    if (head == null) {
+      buckets.set(index, newNode);
+      size++;
+    } else {
+      while(head != null) {
+        if(head.key.equals(key)) {
+          head.value = value;
+          break;
+        }
+        head = head.next;
+      }
+    }
+    
+    if(head == null) {
+      newNode.next = head;
+      buckets.set(index, newNode);
+      size++;
+    }
+    
+    // load factor - size/numBuckets > 0.7
+  }
+  
+  public V remove(final K key) {
+    final int index = getIndex(key);
+    HashNode<K,V> head = buckets.get(index);
+
+    if(head == null) {
+      return -1;
+    }
+    if(head.key.equals(key)) {
+      buckets.set(index, head.next);
+      return head.value;
+    }
+    HashNode<K,V> prev;
+    while(head != null) {
+      if(head.key.equals(key)) {
+        prev.next = head.next;
+        return head.value;
+      }
+      prev = head;
+      head = head.next;
+    }
+    return -1;
+  }
+}
