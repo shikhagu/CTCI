@@ -3,6 +3,10 @@ public class StringBuilder{
   private int size = 100;
   private int length;
   
+  public StringBuilder(){
+    data = new char[size];
+  }
+
   public void append(final String str) {
     if((length + str.length()) > size) {
       char[] temp = data;
