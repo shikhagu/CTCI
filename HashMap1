@@ -8,9 +8,16 @@ public class HashNode<K,V> {
 
 public class HashMap<K,V> {
   private ArrayList<HashNode<K,V>> buckets;
-  private int numBuckets;
+  private int numBuckets=10;
   private int size;
   
+  public HashMap {
+    buckets = new ArrayList<HashNode<K,V>>();
+    for(int i=0; i<numBuckets; i++) {
+      buckets.add(i, null);
+    }
+  }
+
   private int getIndex(final K key) {
     return key.hashCode() % numBuckets;
   }
@@ -63,12 +70,14 @@ public class HashMap<K,V> {
     }
     if(head.key.equals(key)) {
       buckets.set(index, head.next);
+      size--;
       return head.value;
     }
     HashNode<K,V> prev;
     while(head != null) {
       if(head.key.equals(key)) {
         prev.next = head.next;
+        size--;
         return head.value;
       }
       prev = head;
