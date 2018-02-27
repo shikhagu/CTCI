@@ -2,7 +2,7 @@ public class StackNode<T> {
   private T data;
   private StackNode<T> next;
   
-  public StackNode<T> (final T data) {
+  public StackNode (final T data) {
     this.data = data;
   }
   
