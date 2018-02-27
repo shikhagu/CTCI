@@ -31,9 +31,9 @@ public class AnimalQueue<T extends Animal>{
         Cat oldestCat = null;
         Dog oldestDog = null;
         if(catList.size() > 0)
-            oldestCat = catList.getFirst();
+            oldestCat = catList.peek();
         if(dogList.size() > 0)
-            oldestDog = dogList.getFirst();
+            oldestDog = dogList.peek();
         
         if(oldestCat == null && oldestDog == null)
             throw new EmptyAnimalQueueException();
