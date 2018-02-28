@@ -1,0 +1,23 @@
+public void inorderTraversal(Node node) {
+  if(node != null) {
+    inorderTraversal(node.left);
+    visit(node);
+    inorderTraversal(node.right);
+  }
+}
+
+public void preOrderTraversal(Node node) {
+  if(node != null) {
+    visit(node);
+    preOrderTraversal(node.left);
+    preOrderTraversal(node.right);
+  }
+}
+
+public void postOrderTraversal(Node node) {
+  if(node != null) {
+    postOrderTraversal(node.left);
+    postOrderTraversal(node.right);
+    visit(node);
+  }
+}
